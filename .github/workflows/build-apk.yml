@@ -23,6 +23,14 @@ jobs:
           npm ci
           npm run build
 
+      - name: Fix start page
+        run: |
+          cat > dist/index.html <<'EOF'
+          <!DOCTYPE html>
+          <meta charset="utf-8" />
+          <script>location.replace('en/index.html');</script>
+          EOF
+
       - name: Add Capacitor and Android project
         run: |
           npm install --no-save @capacitor/core @capacitor/cli @capacitor/android
